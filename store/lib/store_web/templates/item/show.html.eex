@@ -1,0 +1,11 @@
+<section class="row">
+  <article class="column">
+    <h2><%= @item.name %></h2>
+    <h3>Description:</h3>
+    <p>
+    <%= @item.description %>
+    </p>
+    <h3>Remaining: <%= @count %><h3>
+    <%= link "back", to: "/" %>
+  </article>
+</section>

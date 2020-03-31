@@ -1,0 +1,10 @@
+<section class="row">
+  <article class="column">
+    <h2>Items</h2>
+    <ul>
+    <%= for item <- @items do %>
+      <li><%= link item.name, to: Routes.item_path(@conn, :show, item.id) %></li>
+    <% end %>
+    </ul>
+  </article>
+</section>
