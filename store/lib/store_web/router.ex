@@ -16,11 +16,8 @@ defmodule StoreWeb.Router do
   scope "/", StoreWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-  end
+    get "/", ItemController, :index
 
-  # Other scopes may use custom stacks.
-  # scope "/api", StoreWeb do
-  #   pipe_through :api
-  # end
+    resources "/items", ItemController, only: [:show]
+  end
 end

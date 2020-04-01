@@ -39,7 +39,10 @@ defmodule Catalog.MixProject do
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:uuid, "~> 1.1"},
+
+      {:weirding, "~> 0.1", only: [:dev, :test]},
     ]
   end
 

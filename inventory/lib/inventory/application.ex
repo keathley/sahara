@@ -1,19 +1,29 @@
 defmodule Inventory.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
 
   def start(_type, _args) do
+    config = config!()
+
     children = [
-      # Starts a worker by calling: Inventory.Worker.start_link(arg)
-      # {Inventory.Worker, arg}
+      {Inventory.Counts, [database: config.redis_db]},
+      {Plug.Cowboy, scheme: :http, plug: Inventory.Router, options: [port: config.port]},
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Inventory.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  def config! do
+    Vapor.load!([
+      %Vapor.Provider.Dotenv{},
+      %Vapor.Provider.Env{
+        bindings: [
+          {:port, "WEB_PORT", map: &String.to_integer/1},
+          {:redis_db, "REDIS_DB", map: &String.to_integer/1},
+        ]
+      }
+    ])
   end
 end

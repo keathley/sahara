@@ -7,5 +7,7 @@ defmodule CatalogWeb.Router do
 
   scope "/api", CatalogWeb do
     pipe_through :api
+
+    resources "/items", ItemController, except: [:new, :edit]
   end
 end
