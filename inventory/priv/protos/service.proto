@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package sahara.inventory;
+
+message Item {
+  string id = 1;
+}
+
+message Count {
+  uint32 in_stock = 1;
+}
+
+service Inventory {
+  rpc GetCount(Item) returns (Count);
+}

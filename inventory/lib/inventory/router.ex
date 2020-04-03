@@ -7,6 +7,10 @@ defmodule Inventory.Router do
     pass: ["*/*"],
     json_decoder: Jason
 
+  plug Twirp.Plug,
+    service: Inventory.InventoryService,
+    handler: Inventory.Handler
+
   plug :match
   plug :dispatch
 

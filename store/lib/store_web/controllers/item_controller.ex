@@ -1,6 +1,8 @@
 defmodule StoreWeb.ItemController do
   use StoreWeb, :controller
 
+  alias Inventory.InventoryClient
+
   def index(conn, _params) do
     with {:ok, items} <- get_items() do
       render(conn, "index.html", items: items)
@@ -38,9 +40,7 @@ defmodule StoreWeb.ItemController do
   end
 
   defp get_inventory(id) do
-    with {:ok, resp} <- Mojito.get("http://localhost:4020/counts/#{id}/in_stock"),
-         {:ok, json} <- Jason.decode(resp.body) do
-      {:ok, json["count"]}
-    end
+    client = InventoryClient.new("http://localhost:4020/")
+    InventoryClient.get_count(client, %Sahara.Inventory.Item{id: id})
   end
 end
