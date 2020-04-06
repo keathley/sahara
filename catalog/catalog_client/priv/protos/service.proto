@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package sahara.catalog;
+
+message ItemReq {
+  string id = 1;
+}
+
+message ItemsReq {}
+
+message Item {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message ItemsResp {
+  repeated Item items = 1;
+}
+
+service Catalog {
+  rpc GetItem(ItemReq) returns (Item);
+
+  rpc GetItems(ItemsReq) returns (ItemsResp);
+}

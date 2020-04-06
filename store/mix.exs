@@ -40,9 +40,10 @@ defmodule Store.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:mojito, "~> 0.6"},
-      {:twirp, "~> 0.3"},
+      # {:twirp, "~> 0.3"},
 
-      {:inventory, path: "../inventory", runtime: false},
+      {:inventory_client, path: "../inventory/inventory_client", runtime: false},
+      {:catalog_client, path: "../catalog/catalog_client", runtime: false},
     ]
   end
 end

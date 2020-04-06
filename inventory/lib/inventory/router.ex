@@ -3,13 +3,13 @@ defmodule Inventory.Router do
 
   import Plug.Conn
 
+  plug Twirp.Plug,
+    service: Sahara.Inventory.InventoryService,
+    handler: Inventory.Handler
+
   plug Plug.Parsers, parsers: [:urlencoded, :json],
     pass: ["*/*"],
     json_decoder: Jason
-
-  plug Twirp.Plug,
-    service: Inventory.InventoryService,
-    handler: Inventory.Handler
 
   plug :match
   plug :dispatch

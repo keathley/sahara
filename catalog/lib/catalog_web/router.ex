@@ -10,4 +10,8 @@ defmodule CatalogWeb.Router do
 
     resources "/items", ItemController, except: [:new, :edit]
   end
+
+  forward "/twirp", Twirp.Plug,
+    service: Sahara.Catalog.CatalogService,
+    handler: Catalog.CatalogHandler
 end

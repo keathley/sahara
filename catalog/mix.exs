@@ -42,6 +42,8 @@ defmodule Catalog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:uuid, "~> 1.1"},
 
+      {:catalog_client, path: "catalog_client"},
+
       {:weirding, "~> 0.1", only: [:dev, :test]},
     ]
   end
